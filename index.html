@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+
+<body data-itson-id="246801">
+
+    <header id="hero" class="hero">
+        <div class="hero-inner">
+            <h1 id="typed-title" class="title"> Hola!!!</h1>
+            <p class="subtitle">Calando</p>
+
+          
+
+        </div>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2 class="section-title">Proyectos</h2>
+
+            <div id="msg" class="msg" hidden></div>
+             
+            <div id="loader" class="grid" hidden>
+                <article class="card skeleton"></article>
+        <article class="card skeleton"></article>
+        <article class="card skeleton"></article>
+            </div>
+
+            <section id="projects" class="grid" hidden></section>
+
+            <template id="project-tpl">
+                <article class="card proj">
+                    <div class="proj-cover"></div>
+                    <h3 class="proj-title"></h3>
+                    <p class="proj-desc"></p>
+                    <div class="tags" data-techs></div>
+                    <div class="proj-links">
+                        <a class="link" data-repo target="_blank" rel="noopener">Repositorio</a>
+                    </div>
+
+                </article>
+
+
+            </template>
+
+        </section> 
+
+
+    </main>
+
+    
+</body>
+</html>
