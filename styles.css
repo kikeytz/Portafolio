@@ -1,127 +1,303 @@
-* { box-sizing: border-box; }
-html, body { height: 100%; }
-body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color: #e5e7eb; background:#0b0b0b; }
-img { max-width: 100%; display: block; }
+/* La neta, aqui si me tiro paro el gpt, Pero lo use cuando ya no sabia como hacerle, 
+pero si le heche muchas ganas. El index -1 es clave la neta  */
 
-.hidden { display: none !important; }
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap');
 
-.hero { position: relative; 
-    min-height: 52vh; 
-    display:grid; 
-    place-items:center; }
 
-    .hero::after { content:""; 
-        position:absolute; 
-        inset:0; 
-        background:rgba(0,0,0,.35); }
+:root {
+  --bg: #090b13;
+  --panel: #0c1020;
+  --line: #1a2140;
+  --text: #eaf6ff;
+  --muted: #a9c1d8;
 
-        .hero-inner { position:relative; 
-            z-index:1; 
-            text-align:center; 
-            padding:2rem 1rem; }
+  /* paleta de colores */
+  --cyan: #00e5ff;
+  --cyan-2: #00bcd4;
+  --mag: #ff2fb2;
+  --violet: #7a00ff;
+  --pink: #ff4fd8;
+  --amber: #ffd653;
 
-.title { font-size: clamp(1.8rem, 3vw + 1rem, 3rem); 
-    margin: 0 0 .25rem; }
 
-.title span { color:#93c5fd; }
-.subtitle { color:#cbd5e1; 
-    margin:.25rem 0 1rem; }
+  --shadow: 0 12px 28px rgba(0, 0, 0, .55);
 
-.id-form { display:flex; 
-    gap:.5rem; 
-    justify-content:center; 
-    flex-wrap:wrap; }
+  /* fondo, quien diria que se puede editar imagen en visual */
+  --bg-img: url('https://i.redd.it/3tsek88f04cx.png');
+  --bg-veil-top: rgba(9, 11, 19, .55);
+  --bg-veil-bot: rgba(9, 11, 19, .85);
+  --bg-opacity: .85;
 
-.id-form input {
-  background:#0f0f0f; 
-  color:#f8fafc; 
-  border:1px solid #374151; 
-  border-radius:10px; 
-  padding:.6rem .7rem; 
-  width:9rem;
+  /* copiamos y pegamos lo que hemos hecho chat*/
+  * {
+    box-sizing: border-box
+  }
+
+  html,
+  body {
+    height: 100%
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+
+  [hidden] {
+    display: none !important
+  }
+
+  img {
+    max-width: 100%;
+    display: block
+  }
+
+
+  .container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem
+  }
+
+  .muted {
+    color: var(--muted)
+  }
+
+  /* la parte de arriba */
+  .hero {
+    position: relative;
+    min-height: 48vh;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    /* hacer estas madre, me lo enseño marco deidad */
+    background:
+      radial-gradient(60% 60% at 70% 40%, rgba(255, 47, 178, .18), transparent 60%),
+      radial-gradient(60% 60% at 30% 70%, rgba(0, 229, 255, .18), transparent 60%),
+      linear-gradient(135deg, #0a1224 0%, #0a0f1d 100%);
+    border-bottom: 2px solid #000;
+    box-shadow: var(--shadow);
+  }
+
+  /* importante */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(30% 30% at 50% 50%, rgba(0, 229, 255, .18), transparent 60%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, .03) 0 2px, transparent 2px 4px);
+    opacity: .25;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2.4rem 1rem
+  }
+
+  .title {
+    margin: 0 0 .35rem;
+    font-family: "Bebas Neue", system-ui;
+    letter-spacing: .04em;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    color: #fff;
+    text-shadow:
+      0 0 10px rgba(0, 229, 255, .9),
+      0 0 24px rgba(122, 0, 255, .45);
+  }
+
+  /* el cuadrito chilo aca*/
+  .title .slash {
+    display: inline-block;
+    padding: .1rem .55rem;
+    margin-left: .4rem;
+    background: linear-gradient(90deg, var(--mag), var(--pink), var(--violet));
+    color: #fff;
+    border: 2px solid #000;
+    box-shadow: 0 4px 0 #000, 0 0 16px rgba(255, 47, 178, .55);
+    transform: skew(-8deg);
+  }
+
+  /* glitch leve */
+  .glitch {
+    position: relative
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    mix-blend-mode: screen;
+    text-shadow: 0 0 14px rgba(0, 229, 255, .6);
+    clip-path: inset(0 0 0 0);
+    overflow: hidden;
+    opacity: .7;
+  }
+
+  .glitch::before {
+    transform: translate(1px, -1px);
+    color: var(--cyan)
+  }
+
+  .glitch::after {
+    transform: translate(-1px, 1px);
+    color: var(--mag)
+  }
+
+
+
+  /* ===== Secciones ===== */
+  .section-title {
+    font-family: "Bebas Neue";
+    letter-spacing: .04em;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin: 0 0 1rem;
+    text-shadow: 0 0 10px rgba(122, 0, 255, .35);
+  }
+
+
+  /* ===== Grid / Tarjetas ===== */
+  .grid {
+    display: grid;
+    gap: 1.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))
+  }
+
+  .card {
+    background: linear-gradient(180deg, var(--panel), #0a0f1f);
+    border: 2px solid #000;
+    border-radius: 18px;
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .18;
+    background:
+      linear-gradient(0deg, rgba(255, 255, 255, .08), transparent 30%),
+      radial-gradient(90% 40% at 10% 10%, rgba(0, 229, 255, .16), transparent 60%),
+      radial-gradient(80% 60% at 100% 100%, rgba(122, 0, 255, .14), transparent 60%);
+  }
+
+  /* Tarjeta del proyecto */
+  .proj {
+    display: grid;
+    gap: .65rem
+  }
+
+  .proj-cover {
+    border: 2px solid #000;
+    border-radius: 14px;
+    height: 220px;
+    aspect-ratio: auto;
+    background: #0e1935 center/cover no-repeat;
+    transition: transform .18s ease, filter .18s ease;
+  }
+
+
+
+  .proj-title {
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin: .2rem 0;
+    text-shadow: 0 0 10px rgba(0, 229, 255, .25);
+  }
+
+  .proj-desc {
+    color: var(--muted);
+    margin: .1rem 0 .4rem
+  }
+
+  /* TAGS (HTML...) */
+  .tags {
+    display: flex;
+    gap: .45rem;
+    flex-wrap: wrap
+  }
+
+  .tag {
+    color: #001018;
+    background: var(--cyan);
+    border: 2px solid #000;
+    border-radius: 999px;
+    padding: .22rem .55rem;
+    font-weight: 800;
+    font-size: .85rem;
+    transform: skew(-6deg);
+    box-shadow: 0 2px 0 #000;
+  }
+
+  /* Links */
+  .link {
+    color: #bfe9ff;
+    text-decoration: underline;
+  }
+
+ 
+
+  /* ===== Footer ===== */
+  .footer {
+    margin-top: 2.2rem;
+    padding: 1.4rem 1rem;
+    text-align: center;
+    color: var(--muted);
+    border-top: 2px solid #000;
+  }
+
+  /* ===== Responsive pequeños ===== */
+  @media (max-width: 520px) {
+    .id-form input {
+      width: 8.6rem
+    }
+
+    .proj-cover {
+      aspect-ratio: 16/10
+    }
+  }
+
+  html,
+  body {
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(var(--bg-veil-top), var(--bg-veil-bot)),
+      /* velo */
+      var(--bg-img);
+    /* imagen */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(var(--bg-blur)) saturate(1.05) contrast(1.03);
+    pointer-events: none;
+  }
 }
-.btn { background:#2563eb; 
-  color:#fff; 
-  border:0; 
-  border-radius:10px; 
-  padding:.6rem .9rem; 
-  font-weight:700; 
-  cursor:pointer; 
-}
-.btn:active { transform: translateY(1px); }
-
-.container { max-width: 1080px; 
-    margin: 2rem auto; 
-    padding: 0 1rem; }
-
-.section-title { font-size:1.6rem; 
-    margin: 0 0 1rem; }
-
-.msg { margin:.75rem 0; 
-    padding:.6rem .8rem; 
-    border-radius:10px; 
-    background:#111827; 
-    border:1px solid #374151; }
-
-.msg.error { background:#7f1d1d; 
-    border-color:#991b1b; }
-.msg.success { background:#065f46; border-color:#064e3b; }
-
-.grid { display:grid; 
-    gap:1rem; 
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-
-    .card {
-  background: rgba(17,17,17,.92);
-  border:1px solid #27272a; border-radius:14px; padding:1rem;
-  box-shadow: 0 6px 24px rgba(0,0,0,.35);
-}
-
-.skeleton { height: 280px; background:
-  linear-gradient(90deg, #1f2937 25%, #374151 37%, #1f2937 63%); background-size: 400% 100%;
-  animation: shimmer 1.4s ease-in-out infinite;
-}
-@keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
-
-.proj { display:grid; 
-    gap:.6rem; }
-
-.proj-cover {
-  height: 160px;
-  border-radius:10px; 
-  background:#111827 center / cover no-repeat;
-  border:1px solid #27272a;
-}
-
-
-.proj-title { margin:.2rem 0; 
-    font-size:1.1rem; }
-
-.proj-desc { color:#cbd5e1; 
-    margin:.2rem 0 .2rem; 
-    min-height: 2.2em; }
-
-.tags { display:flex; 
-    flex-wrap: wrap; 
-    gap:.4rem; 
-    margin: .25rem 0 .4rem; }
-
-    .tag {
-  display:inline-block; 
-  font-size:.85rem; 
-  color:#e5e7eb; 
-  background:#111827;
-  border:1px solid #374151; 
-  border-radius:999px; 
-  padding:.2rem .5rem;
-}
-
-.link { color:#93c5fd; text-decoration: underline; }
-
-
-@media (max-width: 480px){
-  .proj-cover { height: 140px; }
-}
-
-/* esta madre es clave */
-[hidden] { display: none !important; }
